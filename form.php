@@ -17,6 +17,7 @@ try {
 }
 
 
+
 $nom = $_POST["Nom"];
 $prenom = $_POST["Prénom"];
 $entreprise = $_POST["Entreprise"];
@@ -27,16 +28,25 @@ $groupes = $_POST["Groupes"];
 
 
 $query = "
-	INSERT INTO Annuaire 
-	(Nom, Prénom, Entreprise, `Date de naissance`, Adresse, Téléphone, Groupes)
+	INSERT INTO Annuaire
+	(Nom, Prénom, Entreprise, `Date de naissance`, Adresse, Téléphone)
 	VALUES
-	('$nom', '$prenom', '$entreprise', '$date', '$adresse', '$telephone', '$groupes');
+	('$nom', '$prenom', '$entreprise', '$date', '$adresse', '$telephone');
 ";
 
-die( $query );
+$grps = "
+	INSERT INTO Groupes
+	(Groupes)	
+	VALUES
+	('$groupes');
+
+";
+
 $dbh ->exec( $query );
+$dbh ->exec($grps);
 
 
+//die( $query );
 // print_r( $dbh->errorInfo() );
 
 // if ($dbh->query($sql) === TRUE) {
