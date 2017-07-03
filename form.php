@@ -46,6 +46,9 @@ $dbh ->exec( $query );
 $dbh ->exec($grps);
 
 
+
+
+
 //die( $query );
 // print_r( $dbh->errorInfo() );
 
@@ -56,21 +59,48 @@ $dbh ->exec($grps);
 // }
 
 
-
-
-
-
-
-
-echo "<p> Nom : ".$nom . "</p>";
-echo "<p> Prénom : ".$prenom . "</p>";
-echo "<p> Entreprise : ".$entreprise . "</p>";
-echo "<p> Date de naissance : ".$date . "</p>";
-echo "<p> Adresse : ".$adresse . "</p>";
-echo "<p> Téléphone : ".$telephone . "</p>";
-echo "<p> Groupes : ".$groupes . "</p>";
-
-
+// echo "<p> Nom : ".$nom . "</p>";
+// echo "<p> Prénom : ".$prenom . "</p>";
+// echo "<p> Entreprise : ".$entreprise . "</p>";
+// echo "<p> Date de naissance : ".$date . "</p>";
+// echo "<p> Adresse : ".$adresse . "</p>";
+// echo "<p> Téléphone : ".$telephone . "</p>";
+// echo "<p> Groupes : ".$groupes . "</p>";
 
 
 ?>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Annuaire</title>
+</head>
+<body>
+<h1>Annuaire</h1>
+
+<table border="solid">
+	<thead>
+		<th>Nom</th>
+		<th>Prénom</th>
+		<th>Entreprise</th>
+		<th>Date de naissance</th>
+		<th>Adresse</th>
+		<th>Téléphone</th>
+	</thead>
+	<tbody>
+		<?php
+		$reponse = $dbh->query('SELECT * FROM Annuaire');
+		while ($affiche=$reponse ->fetch()) {
+			echo'<tr><td>'.$affiche['Nom'].'</td><td>'.' '.$affiche['Prénom'].'</td><td>'.' '.$affiche['Entreprise'].'</td><td>'.' '.$affiche['date de naissance'].'</td><td>'.' '.$affiche['Adresse'].'</td><td>'.' '.$affiche['Téléphone'].'</td></tr>';
+		}
+		?>
+	</tbody>
+	
+</table>
+
+
+</body>
+</html>
