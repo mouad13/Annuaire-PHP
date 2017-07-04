@@ -10,6 +10,7 @@ try {
  catch (PDOException $e) {
     echo 'Connexion échouée : ' . $e->getMessage();
 }
+
 $nom = $_POST["Nom"];
 $prenom = $_POST["Prénom"];
 $entreprise = $_POST["Entreprise"];
@@ -17,21 +18,25 @@ $date = $_POST["Date_de_naissance"];
 $adresse = $_POST["Adresse"];
 $telephone = $_POST["Téléphone"];
 $groupes = $_POST["Groupes"];
-$query = "
+
+if (!empty($nom) && !empty($prenom) &&!empty($telephone) ) {
+	
+	$query = "
 	INSERT INTO Annuaire
 	(Nom, Prénom, Entreprise, `Date de naissance`, Adresse, Téléphone)
 	VALUES
 	('$nom', '$prenom', '$entreprise', '$date', '$adresse', '$telephone');
-";
-$grps = "
+	";
+	$grps = "
 	INSERT INTO Groupes
 	(Groupes)	
 	VALUES
 	('$groupes');
-";
-$dbh ->exec( $query );
-$dbh ->exec($grps);
-//die( $query );
+	";
+	$dbh ->exec( $query );
+	$dbh ->exec($grps);
+}
+// die( $query );
 // print_r( $dbh->errorInfo() );
 // if ($dbh->query($sql) === TRUE) {
 //     echo "New created successfully";
@@ -56,8 +61,10 @@ $dbh ->exec($grps);
 	<title>Annuaire</title>
 </head>
 <body>
-<h1>Annuaire</h1>
 
+<a href="form.html">Formulaire</a>
+
+<h1>Annuaire</h1>
 <table border="solid">
 	<thead>
 		<th>Nom</th>

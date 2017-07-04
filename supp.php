@@ -27,7 +27,7 @@ try {
 
  }
 
-
+header('Location: /AnnuairePHP/form.html');
 
 
 
