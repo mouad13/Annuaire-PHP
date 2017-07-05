@@ -74,14 +74,54 @@ if (!empty($nom) && !empty($prenom) &&!empty($telephone) ) {
 		<th>Adresse</th>
 		<th>Téléphone</th>
 		<th>Supprimer</th>
+		<th>Modifier</th>
 	</thead>
 	<tbody>
-		<?php
-		$reponse = $dbh->query('SELECT * FROM Annuaire');
-		while ($affiche=$reponse ->fetch()) {
-			echo'<tr><td>'.$affiche['Nom'].'</td><td>'.' '.$affiche['Prénom'].'</td><td>'.' '.$affiche['Entreprise'].'</td><td>'.' '.$affiche['Date de naissance'].'</td><td>'.' '.$affiche['Adresse'].'</td><td>'.' '.$affiche['Téléphone'].'</td><td><a href="/AnnuairePHP/supp.php?SUPP='.$affiche['id'].'">Supprimer</a></td></tr>';
-		}
-		?>
+
+		<?php  $reponse = $dbh->query('SELECT * FROM Annuaire'); ?>
+	<?php  	while ($affiche=$reponse ->fetch()) : ?>
+			
+
+			
+
+
+		<tr>
+					<form method="post" action="modif.php">
+						
+
+						<td><input type="text" name="Nom" value="<?=$affiche['Nom'] ?>" /></td>
+						
+						<td><input type="text" name="Prénom" value="<?=$affiche['Prénom'] ?>" /></td>
+						
+						<td><input type="text" name="Entreprise" value="<?=$affiche['Entreprise'] ?>" /></td>
+						
+						<td><input type="text" name="Date de naissance" value="<?=$affiche['Date de naissance'] ?>" /></td>
+						
+						<td><input type="text" name="Adresse" value="<?=$affiche['Adresse'] ?>" /></td>
+						
+						<td><input type="text" name="Téléphone" value="<?=$affiche['Téléphone'] ?>" /></td>
+		
+						<td><a href="/AnnuairePHP/supp.php?SUPP=<?=$affiche['id']?>">Supprimer</a></td>
+						
+						<td>	
+						<input type="hidden" name="id" value="<?=$affiche['id']?>" />
+						<input type="submit" name="modifier" value="modifier" /></td>
+						
+					</form>
+
+					
+				</tr>
+
+
+<?php endwhile; ?>
+
+
+
+
+
+
+
+
 	</tbody>
 	
 </table>
